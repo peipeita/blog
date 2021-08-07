@@ -1,1 +1,2 @@
-# blog
+# Pearsonal Dockerfile repository 
+under dev.
