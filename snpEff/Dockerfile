@@ -16,5 +16,17 @@ RUN conda install -c anaconda openjdk && \
 
 RUN rm -rf /var/lib/apt/lists/*
 
+RUN echo "MpTak_v6.1.genome : MpTak_v6.1" >>snpEff/snpEff.config && \
+    mkdir snpEff/data/MpTak_v6.1 && \
+    cd snpEff/data/MpTak_v6.1 && \
+    wget https://marchantia.info/download/MpTak_v6.1/MpTak_v6.1r1.gff.gz && \
+    mv  MpTak_v6.1r1.gff.gz genes.gff.gz && \
+    mkdir ../data/genomes && \
+    cd ../data/genomes && \
+    wget https://marchantia.info/download/MpTak_v6.1/MpTak_v6.1.genome.fasta.gz && \
+    mv MpTak_v6.1.genome.fasta.gz MpTak_v6.1.fa.gz && \
+    cd ../../ && \
+    java -jar snpEff.jar build -gff3 -v MpTak_v6.1
+
 RUN mkdir -p /local_volume
 WORKDIR /local_volume
