@@ -1,8 +1,10 @@
 FROM ubuntu:18.04
 
-ARG fc_version="2.0.1"
+RUN apt-get update \
+    && apt-get install -y wget tar make
 
-RUN curl -fsSL http://downloads.sourceforge.net/project/subread/subread-${featurecounts_version}/subread-${featurecounts_version}-Linux-x86_64.tar.gz -o /opt/subread-${featurecounts_version}-Linux-x86_64.tar.gz && \
-    tar xvf /opt/subread-${featurecounts_version}-Linux-x86_64.tar.gz -C /opt/ && \
-    ln -s /opt/subread-${featurecounts_version}-Linux-x86_64/bin/featureCounts /usr/local/bin/featureCounts && \
-    rm /opt/subread-${featurecounts_version}-Linux-x86_64.tar.gz
+WORKDIR /usr/local/bin
+RUN wget https://sourceforge.net/projects/subread/files/subread-2.0.1/subread-2.0.1-Linux-x86_64.tar.gz \
+    && tar zxvf subread-2.0.1-Linux-x86_64.tar.gz \
+    && mv subread-2.0.1-Linux-x86_64/* . \
+    && mv bin/* .
