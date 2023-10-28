@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  jbrowse2:
+    image: jbrowse2:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - /path/on/host/to/data:/usr/src/app/jbrowse2/data
