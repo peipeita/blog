@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  r-environment:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
